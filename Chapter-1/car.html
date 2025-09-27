@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aurora Motors — Luxury Car Showroom</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0f1115;
+      --card:#0f1720;
+      --muted:#9aa6b2;
+      --accent:#d4af37; /* gold */
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.03);
+      --radius:16px;
+      --max-w:1200px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(212,175,55,0.06), transparent 8%),
+                  linear-gradient(180deg, #020307 0%, #081018 60%);
+      color:#e9eef2;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:40px 20px;
+    }
+
+    .container{max-width:var(--max-w);margin:0 auto}
+
+    /* Header */
+    header{
+      display:flex;align-items:center;justify-content:space-between;padding:12px 0;margin-bottom:28px;
+    }
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{
+      width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#111827,#0b1220);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.6), inset 0 -6px 18px rgba(255,255,255,0.02);
+    }
+    .logo svg{width:32px;height:32px;fill:var(--accent)}
+    .brand h1{font-family:'Playfair Display', serif;font-size:20px;margin:0}
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;padding:8px 12px;border-radius:10px}
+    nav a:hover{color:#fff;background:rgba(255,255,255,0.03)}
+    .cta{background:linear-gradient(90deg,var(--accent),#ffd98c);color:#071017;padding:10px 18px;border-radius:12px;font-weight:700}
+
+    /* Hero */
+    .hero{
+      display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;margin-bottom:40px
+    }
+    .hero-left{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:36px;border-radius:var(--radius);backdrop-filter: blur(6px);box-shadow:0 10px 30px rgba(0,0,0,0.6)}
+    .eyebrow{letter-spacing:2px;color:var(--muted);font-weight:600;font-size:12px}
+    h2{font-family:'Playfair Display', serif;font-size:40px;margin:10px 0 6px}
+    p.lead{color:var(--muted);line-height:1.6}
+
+    .hero-actions{display:flex;gap:12px;margin-top:22px}
+    .btn{padding:12px 18px;border-radius:12px;font-weight:700;background:transparent;border:1px solid rgba(255,255,255,0.06)}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#ffd98c);color:#071017;border:0}
+
+    /* Right showcase */
+    .showcase{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:var(--radius);padding:18px;display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center
+    }
+    .car-image{width:100%;height:260px;border-radius:12px;overflow:hidden;display:block}
+    .car-image img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.03);transition:transform .9s cubic-bezier(.2,.9,.27,1)}
+    .showcase:hover .car-image img{transform:scale(1)}
+
+    .price{font-weight:800;font-size:18px}
+    .specs{display:flex;gap:12px;align-items:center;color:var(--muted);font-size:13px}
+
+    /* Gallery */
+    .section-title{display:flex;align-items:end;justify-content:space-between;margin:18px 0}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:linear-gradient(180deg,var(--glass),var(--glass-2));padding:16px;border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.5);transition:transform .25s ease, box-shadow .25s ease}
+    .card:hover{transform:translateY(-8px);box-shadow:0 18px 50px rgba(0,0,0,0.6)}
+    .card img{width:100%;height:160px;object-fit:cover;border-radius:10px;margin-bottom:12px}
+    .card h3{margin:6px 0 4px;font-size:18px}
+    .card p{color:var(--muted);margin:0;font-size:13px}
+    .card .meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+
+    /* Feature strip */
+    .features{display:flex;gap:14px;margin:28px 0}
+    .feature{flex:1;background:rgba(255,255,255,0.02);padding:16px;border-radius:12px;text-align:center}
+    .feature h4{margin:8px 0 4px}
+    .feature p{color:var(--muted);margin:0;font-size:13px}
+
+    footer{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.03);display:flex;justify-content:space-between;align-items:center}
+    .social{display:flex;gap:10px}
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr;}
+      .grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:640px){
+      header{flex-direction:column;gap:10px;align-items:flex-start}
+      nav{flex-wrap:wrap}
+      .grid{grid-template-columns:1fr}
+      .hero-left h2{font-size:28px}
+      .showcase{height:220px}
+    }
+
+    /* subtle entrance animation */
+    .reveal{opacity:0;transform:translateY(14px);animation:reveal .8s forwards;animation-delay:.12s}
+    .reveal.delay{animation-delay:.28s}
+    @keyframes reveal{to{opacity:1;transform:none}}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">
+          <!-- stylized A logo -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2 L2 20 H6 L9 13 H15 L18 20 H22 Z"/></svg>
+        </div>
+        <div>
+          <h1>Aurora Motors</h1>
+          <p>Curated luxury automobiles</p>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#showroom">Showroom</a>
+        <a href="#collection">Collection</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+        <a class="cta" href="#book">Book Test Drive</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-left reveal">
+          <div class="eyebrow">EXQUISITE — LIMITED EDITION</div>
+          <h2>Experience automotive artistry<br><span style="color:var(--accent)">Precision • Performance • Presence</span></h2>
+          <p class="lead">Aurora Motors showcases a handpicked collection of the world's most coveted luxury cars. Schedule a private viewing, reserve limited releases, or customise your dream machine with our atelier services.</p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#book">Book a Private Viewing</a>
+            <a class="btn" href="#collection">Explore Collection</a>
+          </div>
+
+          <div style="margin-top:18px;color:var(--muted);font-size:13px">Open by appointment — Monaco & Dubai showrooms</div>
+        </div>
+
+        <aside class="showcase reveal delay">
+          <div class="car-image">
+            <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1400&q=80" alt="Luxury Car">
+          </div>
+          <div style="width:100%;display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+            <div>
+              <div style="font-size:14px;color:var(--muted)">2025 • Aurora Edition</div>
+              <div style="font-weight:700;font-size:18px">Aventis S-Concept</div>
+            </div>
+            <div style="text-align:right">
+              <div class="price">$399,000</div>
+              <div class="specs"><span>V8 Twin Turbo</span><span>•</span><span>630 HP</span></div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="collection">
+        <div class="section-title">
+          <h3 style="margin:0">Featured Collection</h3>
+          <div style="color:var(--muted)">Handpicked. Limited availability.</div>
+        </div>
+
+        <div class="grid reveal">
+          <article class="card">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=70" alt="Car 1">
+            <h3>Monarque GT</h3>
+            <p>Grand touring comfort with track-ready dynamics. Carbon-fibre aero package and bespoke leather interiors.</p>
+            <div class="meta">
+              <div style="color:var(--muted)">2024 • 560 HP</div>
+              <div style="font-weight:700">$289,000</div>
+            </div>
+          </article>
+
+          <article class="card">
+            <img src="https://images.unsplash.com/photo-1549921296-3e7b3d2d3a86?auto=format&fit=crop&w=1400&q=70" alt="Car 2">
+            <h3>Valorian RS</h3>
+            <p>Aerodynamic mastery and a twin-turbo V12 — limited to 75 units worldwide.</p>
+            <div class="meta">
+              <div style="color:var(--muted)">2025 • 730 HP</div>
+              <div style="font-weight:700">$749,000</div>
+            </div>
+          </article>
+
+          <article class="card">
+            <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1400&q=70" alt="Car 3">
+            <h3>Celeste Roadster</h3>
+            <p>Open-air elegance with handcrafted wood trim and an adaptive suspension for sublime ride quality.</p>
+            <div class="meta">
+              <div style="color:var(--muted)">2023 • 520 HP</div>
+              <div style="font-weight:700">$359,000</div>
+            </div>
+          </article>
+        </div>
+
+        <div class="features">
+          <div class="feature reveal">
+            <h4>Concierge Service</h4>
+            <p>Door-to-door delivery and white-glove pick-up for maintenance.</p>
+          </div>
+          <div class="feature reveal delay">
+            <h4>Custom Atelier</h4>
+            <p>Bespoke interiors, paint suites, and performance upgrades.</p>
+          </div>
+          <div class="feature reveal delay" style="animation-delay:.6s">
+            <h4>Secure Storage</h4>
+            <p>Climate-controlled vaults with real-time monitoring.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" style="margin-top:6px">
+        <div class="section-title">
+          <h3 style="margin:0">Services & Experiences</h3>
+          <div style="color:var(--muted)">From private demos to full restoration</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start">
+          <div style="background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:14px">
+            <h4>Private Demonstrations</h4>
+            <p style="color:var(--muted)">Reserve an exclusive track day or on-road demonstration with our factory-trained drivers. Each experience is tailored to your vehicle and preferences.</p>
+
+            <h4 style="margin-top:18px">Customization</h4>
+            <p style="color:var(--muted)">From hand-stitched interiors to bespoke performance mapping, our atelier will help you personalise every detail.</p>
+
+            <h4 style="margin-top:18px">Financing & Trade-ins</h4>
+            <p style="color:var(--muted)">Competitive financing options and transparent valuations for trade-ins.</p>
+          </div>
+
+          <aside style="background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:14px;text-align:center">
+            <div style="font-size:13px;color:var(--muted)">Next Available Demo</div>
+            <div style="font-weight:800;font-size:20px;margin-top:10px">Oct 15, 2025</div>
+            <div style="margin-top:10px;color:var(--muted)">Spaces are limited — reserve early</div>
+            <a href="#book" class="btn primary" style="display:inline-block;margin-top:14px">Reserve Spot</a>
+          </aside>
+        </div>
+      </section>
+
+      <section id="contact" style="margin-top:28px">
+        <div class="section-title">
+          <h3 style="margin:0">Contact & Location</h3>
+          <div style="color:var(--muted)">Private appointments only — by request</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 380px;gap:18px;align-items:start">
+          <div style="padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:14px">
+            <h4>Showroom Address</h4>
+            <p style="color:var(--muted);margin:6px 0">Monaco — 12 Rue de la Lumière<br>Dubai — Jumeirah Beach Road</p>
+
+            <h4 style="margin-top:12px">Email</h4>
+            <p style="color:var(--muted);margin:6px 0">private@auroramotors.example</p>
+
+            <h4 style="margin-top:12px">Phone</h4>
+            <p style="color:var(--muted);margin:6px 0">+33 6 12 34 56 78</p>
+          </div>
+
+          <form style="padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px" id="book">
+            <h4>Request Appointment</h4>
+            <label style="display:block;margin-top:10px;font-size:13px;color:var(--muted)">Full name</label>
+            <input type="text" placeholder="Your name" style="width:100%;padding:10px;border-radius:10px;border:0;margin-top:6px;background:#071018;color:#eaf2f7">
+
+            <label style="display:block;margin-top:10px;font-size:13px;color:var(--muted)">Email</label>
+            <input type="email" placeholder="you@example.com" style="width:100%;padding:10px;border-radius:10px;border:0;margin-top:6px;background:#071018;color:#eaf2f7">
+
+            <label style="display:block;margin-top:10px;font-size:13px;color:var(--muted)">Preferred date</label>
+            <input type="date" style="width:100%;padding:10px;border-radius:10px;border:0;margin-top:6px;background:#071018;color:#eaf2f7">
+
+            <button type="submit" class="btn primary" style="width:100%;margin-top:12px">Request Appointment</button>
+            <div style="color:var(--muted);font-size:12px;margin-top:8px">We will respond within 48 hours.</div>
+          </form>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div style="color:var(--muted)">© 2025 Aurora Motors — All rights reserved</div>
+      <div class="social">
+        <a href="#" style="color:var(--muted);text-decoration:none">Instagram</a>
+        <a href="#" style="color:var(--muted);text-decoration:none">LinkedIn</a>
+        <a href="#" style="color:var(--muted);text-decoration:none">YouTube</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // small enhancement: smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',function(e){
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'center'}); }
+      })
+    })
+
+    // simple form handler (no backend)
+    document.getElementById('book').addEventListener('submit', function(e){
+      e.preventDefault(); alert('Thank you — your appointment request has been sent.'); this.reset();
+    })
+  </script>
+</body>
+</html>
