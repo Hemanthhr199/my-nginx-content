@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Car Garage</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 40px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .garage-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      background-color: #3498db;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    .car-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .car-item {
+      background-color: #ecf0f1;
+      margin-bottom: 10px;
+      padding: 15px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .remove-btn {
+      background-color: #e74c3c;
+      padding: 5px 10px;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .remove-btn:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🚗 My Car Garage</h1>
+
+  <div class="garage-container">
+    <form id="carForm">
+      <input type="text" id="make" placeholder="Make (e.g. Toyota)" required>
+      <input type="text" id="model" placeholder="Model (e.g. Corolla)" required>
+      <input type="number" id="year" placeholder="Year (e.g. 2020)" required>
+      <button type="submit">Add Car</button>
+    </form>
+
+    <ul id="carList" class="car-list"></ul>
+  </div>
+
+  <script>
+    const carForm = document.getElementById('carForm');
+    const carList = document.getElementById('carList');
+
+    carForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const make = document.getElementById('make').value;
+      const model = document.getElementById('model').value;
+      const year = document.getElementById('year').value;
+
+      if (!make || !model || !year) return;
+
+      const li = document.createElement('li');
+      li.className = 'car-item';
+      li.innerHTML = `
+        <span>${year} ${make} ${model}</span>
+        <button class="remove-btn">Remove</button>
+      `;
+
+      carList.appendChild(li);
+
+      // Reset the form
+      carForm.reset();
+
+      // Handle remove
+      li.querySelector('.remove-btn').addEventListener('click', () => {
+        carList.removeChild(li);
+      });
+    });
+  </script>
+
+</body>
+</html>
+
